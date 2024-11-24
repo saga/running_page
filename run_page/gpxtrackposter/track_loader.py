@@ -151,6 +151,7 @@ class TrackLoader:
         TODO refactor with _load_tcx_tracks
         """
         tracks = {}
+        print(f"------ _load_data_tracks begin ")
         with concurrent.futures.ProcessPoolExecutor() as executor:
             future_to_file_name = {
                 executor.submit(load_func, file_name): file_name
@@ -169,14 +170,15 @@ class TrackLoader:
     @staticmethod
     def _list_data_files(data_dir, file_suffix):
         synced_files = load_synced_file_list()
+        print(f"-- _list_data_files got {len(synced_files)}")
         data_dir = os.path.abspath(data_dir)
         if not os.path.isdir(data_dir):
             raise ParameterError(f"Not a directory: {data_dir}")
         for name in os.listdir(data_dir):
             if name.startswith("."):
                 continue
-            if name in synced_files:
-                continue
+            # if name in synced_files:
+            #     continue
             path_name = os.path.join(data_dir, name)
             if name.endswith(f".{file_suffix}") and os.path.isfile(path_name):
                 yield path_name

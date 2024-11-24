@@ -49,6 +49,9 @@ def to_date(ts):
 
 
 def make_activities_file(sql_file, data_dir, json_file, file_suffix="gpx"):
+    print(
+        f"--------- make_activities_file begin -- {sql_file} - { data_dir} - { json_file } - { file_suffix }"
+    )
     generator = Generator(sql_file)
     generator.sync_from_data_dir(data_dir, file_suffix=file_suffix)
     activities_list = generator.load()

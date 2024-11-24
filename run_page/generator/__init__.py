@@ -77,6 +77,7 @@ class Generator:
         self.session.commit()
 
     def sync_from_data_dir(self, data_dir, file_suffix="gpx"):
+        print(f"------ sync_from_data_dir begin -- {data_dir} - {file_suffix}")
         loader = track_loader.TrackLoader()
         tracks = loader.load_tracks(data_dir, file_suffix=file_suffix)
         print(f"load {len(tracks)} tracks")
