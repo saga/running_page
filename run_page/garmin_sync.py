@@ -342,7 +342,7 @@ if __name__ == "__main__":
     file_type = options.download_file_type
     is_only_running = options.only_run
     if secret_string is None:
-        print("Missing argument nor valid configuration file")
+        print("Missing argument nor valid configuration file for Garmin")
         sys.exit(1)
     folder = FOLDER_DICT.get(file_type, "gpx")
     # make gpx or tcx dir
