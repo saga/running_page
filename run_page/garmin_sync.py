@@ -336,11 +336,14 @@ if __name__ == "__main__":
     )
     options = parser.parse_args()
     secret_string = options.secret_string
+    print(os.getenv("GARMIN_SECRET_STRING"))
     auth_domain = (
         "CN" if options.is_cn else config("sync", "garmin", "authentication_domain")
     )
     file_type = options.download_file_type
     is_only_running = options.only_run
+    if secret_string is None and os.getenv("GARMIN_SECRET_STRING") is not None:
+        secret_string = os.getenv("GARMIN_SECRET_STRING")
     if secret_string is None:
         print("Missing argument nor valid configuration file for Garmin")
         sys.exit(1)
